@@ -16,8 +16,8 @@ var insertionSort = function(arr){
     while(i>-1 && arr[i] > key){
       console.log('swapping: ' + arr[i] + ' with ' + arr[i+1]);
       arr[i+1] = arr[i];
+      arr[i] = key;
       i--;
-      arr[i+1] = key;
     }
   }
   return arr;
