@@ -32,10 +32,7 @@ function highest_product_of_3(arr){
 /*
   Another way using SORT
 
-    arr.sort(funciton(a,b){
-      return a > b;
-    });
-
+    arr.sort();
     return arr.pop() * Math.Max(arr[0]*arra[1], arr[arr.length-1] * arr[arr.length-2]);
 
 */

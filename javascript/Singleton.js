@@ -18,4 +18,3 @@ if (s1 === s2){
 if (s1.name === s2.name){
  console.log('true');
 }
-
