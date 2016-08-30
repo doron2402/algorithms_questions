@@ -19,6 +19,9 @@ var jobs = [
 	},{
 		name: 4,
 		dependencies: [2,3]
+	}, {
+		name: 5,
+		dependencies: [4]
 	}];
 
 // @input: collection of jobs
@@ -26,24 +29,55 @@ var jobs = [
 function run(jobQueue) {
 	// Validate
 	validateJobQueue(jobQueue);
-	var orderArray = [];
-	console.log(jobQueue);
-	jobQueue.sort(orderByDependencies);
-	console.log(jobQueue);
+	
+	
+	jobQueue.sort(sortByDependencies);
+	var completeJobs = Object.keys(jobQueue).map(function(val){
+		if (jobQueue[val].dependencies.length === 0) {
+			return jobQueue[val].name;
+		}
+	}, []).filter(function(x) {
+		if (x && x !== null) {
+			return x;
+		}
+	});
+	
+	isComplete = false;
+	while(!isComplete) {
+		Object.keys(jobQueue).forEach(function(index) {
+			if (completeJobs.indexOf(parseInt(jobQueue[index].name)) === -1 && 
+					baseContainsArray(completeJobs, jobQueue[index].dependencies)
+				){
+					completeJobs.push(parseInt(jobQueue[index].name));
+			}
+			if (Object.keys(jobQueue).length === completeJobs.length){
+				isComplete = true;
+			}
+		});
+	}
+	
+
+	console.log(completeJobs);
 }
 
-var orderByDependencies = function(a,b) {
-	if (a.dependencies.length === 0) {
-		return -1;
-	} else if (b.dependencies.length === 0) {
+var sortByDependencies = function(a,b) {
+	if (a.dependencies.length > b.dependencies.length) {
 		return 1;
+	} else if (a.dependencies.length < b.dependencies.length) {
+		return -1;
 	} else {
-		if (a.dependencies.indexOf(b.name) !== -1) {
-			return -1;
-		} else {
-			return 1;
-		}
+		return 0;
 	}
+};
+
+var baseContainsArray = function(base, compare) {
+	var contains = true;
+	compare.forEach(function(val) {
+		if (base.indexOf(val) === -1) {
+			contains = false;
+		}
+	});
+	return contains;
 }
 
 var validateJobQueue = function(jobQueue) {
