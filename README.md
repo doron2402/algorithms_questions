@@ -47,8 +47,6 @@ In case you want to prepare yourself for a job interview - try to solve it yours
 | [Sum Lists - Java]()  | [click](https://github.com/doron2402/algorithms_questions/blob/master/java/SumLists.java)
 | [URLify in Java]()  | [click](https://github.com/doron2402/algorithms_questions/blob/master/java/URLify.java)
 | [Insertion Sort Javascript]()  | [click](https://github.com/doron2402/algorithms_questions/blob/master/javascript/insertion_sort.js)
-|
-
 
 # Contribute
 Find a bug? want to add an algorithm, have a PR and ping me on twitter [@segaldoron](https://twitter.com/segaldoron)
